@@ -38,6 +38,7 @@ def modify_content(request, page_id, content_id, language_id):
             Content.objects.set_or_create_content(page, language_id,
                                                   content_id, content)
         page.invalidate()
+        page.save()
         return HttpResponse('ok')
     raise Http404
 modify_content = staff_member_required(modify_content)
